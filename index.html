@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justify-Content Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="container">
+        <header class="header">
+            <h1>↔️ Justify-Content Explicado</h1>
+            <p class="subtitle">Controla o alinhamento dos itens no <strong>eixo principal</strong></p>
+        </header>
+
+        <!-- CONCEITO -->
+        <section class="concept-section">
+            <h2>📚 O que é Justify-Content?</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">🎯</div>
+                    <h3>Função</h3>
+                    <p>Alinha os itens ao longo do <strong>eixo principal</strong> (main axis)</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">➡️</div>
+                    <h3>Eixo Principal</h3>
+                    <p>Horizontal se <code>flex-direction: row</code><br>Vertical se <code>flex-direction: column</code></p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">📐</div>
+                    <h3>Espaço Extra</h3>
+                    <p>Distribui o espaço <strong>livre</strong> entre/ao redor dos itens</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALORES -->
+        <section class="values-section">
+            <h2>🎨 Todos os Valores (clique para testar)</h2>
+            
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>flex-start <span class="badge">padrão</span></h3>
+                    <p>Itens alinhados no <strong>início</strong> do eixo principal</p>
+                    <button class="btn-test" onclick="applyJustify('flex-start')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-flex-start">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>center</h3>
+                    <p>Itens <strong>centralizados</strong> no eixo principal</p>
+                    <button class="btn-test" onclick="applyJustify('center')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-center">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>flex-end</h3>
+                    <p>Itens alinhados no <strong>final</strong> do eixo principal</p>
+                    <button class="btn-test" onclick="applyJustify('flex-end')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-flex-end">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>space-between</h3>
+                    <p>Espaço <strong>entre</strong> os itens (primeiro e último nas bordas)</p>
+                    <button class="btn-test" onclick="applyJustify('space-between')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-space-between">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>space-around</h3>
+                    <p>Espaço <strong>ao redor</strong> de cada item (bordas = metade do espaço)</p>
+                    <button class="btn-test" onclick="applyJustify('space-around')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-space-around">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+
+            <div class="value-demo">
+                <div class="value-info">
+                    <h3>space-evenly</h3>
+                    <p>Espaço <strong>igual</strong> entre todos os itens (incluindo bordas)</p>
+                    <button class="btn-test" onclick="applyJustify('space-evenly')">Testar</button>
+                </div>
+                <div class="demo-box" id="demo-space-evenly">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLAYGROUND INTERATIVO -->
+        <section class="playground-section">
+            <h2>🎮 Playground Interativo</h2>
+            <p>Experimente em tempo real e veja o código CSS!</p>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label>📐 Justify-Content:</label>
+                    <select id="justifySelect" onchange="updatePlayground()">
+                        <option value="flex-start">flex-start</option>
+                        <option value="center">center</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-around">space-around</option>
+                        <option value="space-evenly">space-evenly</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>🧭 Flex-Direction:</label>
+                    <select id="directionSelect" onchange="updatePlayground()">
+                        <option value="row">row (horizontal)</option>
+                        <option value="column">column (vertical)</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-action" onclick="addItemPlayground()">➕ Item</button>
+                    <button class="btn-action" onclick="removeItemPlayground()">➖ Item</button>
+                    <button class="btn-action" onclick="resetPlayground()">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="playground-demo">
+                <div class="axis-labels">
+                    <span class="axis-label" id="axisLabel">➡️ Eixo Principal (justify-content atua aqui)</span>
+                </div>
+                <div class="demo-box playground-box" id="playgroundBox">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+                    <div class="item">3</div>
+                    <div class="item">4</div>
+                </div>
+            </div>
+
+            <div class="code-output">
+                <h3>💻 Código CSS Gerado:</h3>
+                <pre id="codeOutput"><code>.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- CASOS DE USO -->
+        <section class="use-cases-section">
+            <h2>💡 Quando Usar Cada Valor?</h2>
+            
+            <div class="use-case">
+                <h3>🏠 Navbar</h3>
+                <p><code>justify-content: space-between</code> - Logo à esquerda, menu à direita</p>
+                <div class="demo-box navbar-demo">
+                    <div class="item nav-logo">LOGO</div>
+                    <div class="item nav-menu">Menu</div>
+                </div>
+            </div>
+
+            <div class="use-case">
+                <h3>🎯 Botões Centralizados</h3>
+                <p><code>justify-content: center</code> - Botão centralizado na página</p>
+                <div class="demo-box center-demo">
+                    <div class="item btn-demo">Clique Aqui</div>
+                </div>
+            </div>
+
+            <div class="use-case">
+                <h3>📊 Cards Distribuídos</h3>
+                <p><code>justify-content: space-evenly</code> - Cards com espaçamento igual</p>
+                <div class="demo-box cards-demo">
+                    <div class="item card-item">Card 1</div>
+                    <div class="item card-item">Card 2</div>
+                    <div class="item card-item">Card 3</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
